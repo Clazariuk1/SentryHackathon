@@ -10,15 +10,50 @@ function App() {
         <div className="col">
           <div className="row">
             <div className="card" >
+              <h1>SOS Beacon</h1>
+              <h3>Fast, simple, discreet. Send your location and more by text message for faster safer emergency response</h3>
               <div className="card-body">
-                <h5 className="card-title">Ask For Help</h5>
+                <h5 className="card-title">Type in a phone number below and choose what data you send...</h5>
                 <form>
                   <div className="form-item">
-                    <label className="form-label">Your Name</label>
+                    <label className="form-label">Emergency Contact Number:</label>
                     <input className="form-text" type="text" value={sosName} />
                   </div>
                 </form>
-                <a href="#" className="btn btn-primary">Go somewhere</a>
+                <h5 className="card-title">Or, select a number from your existing phone contacts...</h5>
+                <form>
+                  <div className="form-item">
+                    <label className="form-label">Emergency Contact Number:</label>
+                    <input className="form-text" type="text" value={sosName} />
+                  </div>
+                </form>
+                <div className="buttonCardList">
+                  <div className="buttonCard">
+                    <a href="#" className="btn btn-primary">Send Location by Text</a>
+                    <div className="buttonTextBox">
+                      Send a text message to your chosen phone contact containing your location data and a request for immediate help.
+                    </div>
+                  </div>
+                  <div className="buttonCard">
+                    <a href="#" className="btn btn-primary">Initiate Phone Call</a>
+                    <div className="buttonTextBox">
+                      Call your selected contact and share critical information about your situation on the spot.
+                    </div>
+                  </div>
+                  <div className="buttonCard">
+                    <a href="#" className="btn btn-primary">Send Audio Message</a>
+                    <div className="buttonTextBox">
+                      Record and send an audio message by text to your chosen phone contact so they will have record of your situation.
+                    </div>
+                  </div>
+                  <div className="buttonCard">
+                    <a href="#" className="btn btn-primary">Send Video Message</a>
+                    <div className="buttonTextBox">
+                      Record and send a video message by text to your chosen phone contact so they will have record of your situation.
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
