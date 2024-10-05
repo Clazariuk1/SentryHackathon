@@ -2,41 +2,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-  body {
+body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 1rem;
     text-align: center;
     font-size: 12pt;
-  }
+}
 
-  h1 {
+h1 {
     margin: 1rem;
-  }
-
+}
 
 .card {
-    background-color: lightblue
+    background-color: lightblue;
+    border-radius: 8px;
+    padding: 1rem;
 }
 
 .btn {
     font-size: 15pt;
     background-color: red;
     margin: 1rem;
-    width: 10rem;
+    width: 100%; /* Make the button take full width */
+    max-width: 10rem; /* Limit max width */
     height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4rem;
     border-radius: 2vmin;
 }
 
 .buttonTextBox {
     border: solid 1px royalblue;
     border-radius: 3vmin;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .buttonCard {
@@ -47,10 +48,45 @@
     justify-content: center;
     font-size: 1rem;
     padding: 1rem;
+    flex-direction: column; /* Stack elements vertically */
 }
 
 .buttonCardList {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        font-size: 10pt; /* Smaller font for mobile */
+    }
+
+    .btn {
+        padding: 1rem; /* Reduce padding */
+        font-size: 12pt; /* Adjust font size for mobile */
+    }
+
+    .card {
+        padding: 0.5rem; /* Reduce card padding */
+    }
+
+    .buttonCard {
+        width: 100%; /* Make buttons take full width on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Smaller heading for very small screens */
+    }
+
+    h3 {
+        font-size: 1rem; /* Adjust subheading */
+    }
+
+    .buttonTextBox {
+        font-size: 0.9rem; /* Adjust text size */
+    }
 }
