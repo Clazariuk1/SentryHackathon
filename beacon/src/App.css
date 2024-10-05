@@ -9,6 +9,7 @@ body {
     padding: 1rem;
     text-align: center;
     font-size: 12pt;
+
 }
 
 h1 {
@@ -21,12 +22,13 @@ h1 {
     padding: 1rem;
 }
 
+
 .btn {
     font-size: 15pt;
     background-color: red;
     margin: 1rem;
-    width: 100%; /* Make the button take full width */
-    max-width: 10rem; /* Limit max width */
+    width: 100%;
+    max-width: 10rem;
     height: 5rem;
     display: flex;
     justify-content: center;
@@ -40,15 +42,21 @@ h1 {
     padding: 0.5rem;
 }
 
+.form-item {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    padding: .5rem;
+}
+
 .buttonCard {
     display: flex;
-    border: solid 1px red;
     margin: 1rem;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
     padding: 1rem;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
 }
 
 .buttonCardList {
@@ -60,33 +68,33 @@ h1 {
 /* Responsive Styles */
 @media (max-width: 768px) {
     body {
-        font-size: 10pt; /* Smaller font for mobile */
+        font-size: 10pt;
     }
 
     .btn {
-        padding: 1rem; /* Reduce padding */
-        font-size: 12pt; /* Adjust font size for mobile */
+        padding: 1rem;
+        font-size: 12pt;
     }
 
     .card {
-        padding: 0.5rem; /* Reduce card padding */
+        padding: 0.5rem;
     }
 
     .buttonCard {
-        width: 100%; /* Make buttons take full width on mobile */
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.5rem; /* Smaller heading for very small screens */
+        font-size: 1.5rem;
     }
 
     h3 {
-        font-size: 1rem; /* Adjust subheading */
+        font-size: 1rem;
     }
 
     .buttonTextBox {
-        font-size: 0.9rem; /* Adjust text size */
+        font-size: 0.9rem;
     }
 }
