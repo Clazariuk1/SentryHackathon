@@ -10,9 +10,11 @@ const data: SOSReport = {
   location: ""
 }
 
+
 function App() {
 
   const [sosName, setSOSName] = useState("");
+
   const [emergNumber, setEmergNumber] = useState("");
   const [longitude, setLongitude] = useState<number>();
   const [latitude, setLatitude] = useState<number>();
@@ -57,20 +59,20 @@ function App() {
 
   }
 
-
   return (
     <>
       <div className="container">
         <div className="col">
           <div className="row">
-            <div className="card" >
+            <div className="card">
               <h1>SOS Beacon</h1>
-              <h3>Fast, simple, discreet. Send your location and more by text message for faster safer emergency response</h3>
+              <h3>Fast, simple, discreet. Get help when you need it.</h3>
               <div className="card-body">
 
                 {message.length > 0 &&
                   <div className='alert alert-success'>
                     Sent message to server from {latitude} {longitude} for {sosName}
+
                   </div>
                 }
 
@@ -116,7 +118,7 @@ function App() {
                     </div>
                   </div>
                   <div className="buttonCard">
-                    <a href="#" className="btn btn-primary">Send Audio Message</a>
+                    <AudioRecorder /> {/* Pass the phone number to AudioRecorder */}
                     <div className="buttonTextBox">
                       Record and send an audio message by text to your chosen phone contact so they will have record of your situation.
                     </div>
@@ -128,14 +130,13 @@ function App() {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
