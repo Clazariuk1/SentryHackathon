@@ -52,3 +52,18 @@ def send_text():
         return jsonify({"status": "success"}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
+#@app.route('/send_audio', methods=['POST'])
+#@cross_origin()
+#def send_audio():
+#    phone_number = request.form['phone_number']
+#    audio_file = request.files['audio']
+
+    # Save the audio file or send it as an SMS (example logic)
+    # Here you could implement sending logic similar to how you send text messages
+#    recipient = phone_number + CARRIERS['some_carrier']  # Determine the correct carrier
+    # Implement your logic to send the audio file to the recipient
+    # You might need to upload to a service or send as an MMS
+
+#    return jsonify({"status": "success"}), 200
