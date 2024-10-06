@@ -16,14 +16,14 @@ function App() {
                 <h5 className="card-title">Type in a phone number below and choose what data you send...</h5>
                 <form>
                   <div className="form-item">
-                    <label className="form-label">Emergency Contact Number:</label>
+                    <label className="form-label">Emergency Contact:</label>
                     <input className="form-text" type="text" value={sosName} />
                   </div>
                 </form>
-                <h5 className="card-title">Or, select a number from your existing phone contacts...</h5>
+                <h5 className="card-title">Please tell us your name below so we can help identify you...</h5>
                 <form>
                   <div className="form-item">
-                    <label className="form-label">Emergency Contact Number:</label>
+                    <label className="form-label">Your Name:</label>
                     <input className="form-text" type="text" value={sosName} />
                   </div>
                 </form>
