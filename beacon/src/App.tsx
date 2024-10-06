@@ -1,11 +1,63 @@
-// App.tsx
-import './App.css';
-import { useState } from 'react';
-import AudioRecorder from './AudioRecorder'; // Import the AudioRecorder component
+import './App.css'
+import { useState, useEffect } from 'react';
+import { SOSReport } from './types';
+
+const data: SOSReport = {
+  emergencyPhone: "",
+  fullName: "",
+  latitude: null,
+  longitude: null,
+  location: ""
+}
+
 
 function App() {
+
   const [sosName, setSOSName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(""); // Track phone number
+
+  const [emergNumber, setEmergNumber] = useState("");
+  const [longitude, setLongitude] = useState<number>();
+  const [latitude, setLatitude] = useState<number>();
+  const [location, setLocation] = useState("");
+  const [hasLocation, setHasLocation] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        setHasLocation(true);
+        setLongitude(pos.coords.longitude);
+        setLatitude(pos.coords.latitude);
+      }
+    );
+  })
+
+  function handleSendData() {
+    data.emergencyPhone = emergNumber;
+    data.fullName = sosName;
+    data.latitude = latitude as number;
+    data.longitude = longitude as number;
+    data.location = location;
+
+    const payload = JSON.stringify(data);
+    console.log("payload: ", payload)
+    setMessage(payload);
+    console.log(message);
+    fetch("https://davidsawires.pythonanywhere.com/send_text", {
+      method: "POST",
+      body: payload,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((rslt) => {
+        console.log('message went', rslt)
+      })
+      .catch((err) => {
+        console.log('we flubbed', err)
+      })
+
+  }
 
   return (
     <>
@@ -16,33 +68,45 @@ function App() {
               <h1>SOS Beacon</h1>
               <h3>Fast, simple, discreet. Get help when you need it.</h3>
               <div className="card-body">
-                <h5 className="card-title">Type in a phone number below to contact...</h5>
-                <form className="formBox">
-                  <div className="form-item">
-                    <label className="form-label">Emergency Contact:</label>
-                    <input
-                      className="form-text"
-                      type="text"
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)} // Update phone number state
-                    />
+
+                {message.length > 0 &&
+                  <div className='alert alert-success'>
+                    Sent message to server from {latitude} {longitude} for {sosName}
+
                   </div>
-                </form>
-                <h5 className="card-title">Please tell us your name below so we can help identify you...</h5>
-                <form className="formBox">
-                  <div className="form-item">
-                    <label className="form-label">Your Reference Name:</label>
-                    <input
-                      className="form-text"
-                      type="text"
-                      value={sosName}
-                      onChange={(e) => setSOSName(e.target.value)} // Update SOS name state
-                    />
-                  </div>
-                </form>
+                }
+
+
+                {hasLocation ? <p>Your location is {latitude} {longitude}</p> :
+                  <p>Note -- we cannot deterine your location</p>
+                }
+                <h5 className="card-title">Type in a phone number below and choose what data you send...</h5>
+
+                <div className="d-flex flex-row">
+                  <label className="form-label w-25 me-3 ">Name:</label>
+                  <input className="form-text w-50" type="text" value={sosName}
+                    onChange={evt => setSOSName(evt.target.value)}
+                  />
+                </div>
+
+                <div className="d-flex flex-row">
+                  <label className="form-label w-25 me-3">Emergency Contact Number:</label>
+                  <input className="form-text w-50" type="text" value={emergNumber}
+                    onChange={evt => setEmergNumber(evt.target.value)}
+                  />
+                </div>
+
+                <div className="d-flex flex-row">
+                  <label className="form-label w-25 me-3">Description of Your Location:</label>
+                  <input className="form-text w-50" type="text" value={location}
+                    onChange={evt => setLocation(evt.target.value)}
+                  />
+                </div>
+
+
                 <div className="buttonCardList">
                   <div className="buttonCard">
-                    <a href="#" className="btn btn-primary">Send Location by Text</a>
+                    <a className="btn btn-primary" onClick={handleSendData}>Send Location by Text</a>
                     <div className="buttonTextBox">
                       Send a text message to your chosen phone contact containing your location data and a request for immediate help.
                     </div>
