@@ -1,30 +1,43 @@
-import './App.css'
+// App.tsx
+import './App.css';
 import { useState } from 'react';
+import AudioRecorder from './AudioRecorder'; // Import the AudioRecorder component
 
 function App() {
   const [sosName, setSOSName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(""); // Track phone number
 
   return (
     <>
       <div className="container">
         <div className="col">
           <div className="row">
-            <div className="card" >
+            <div className="card">
               <h1>SOS Beacon</h1>
-              <h3>Fast, simple, discreet. Send your location and more by text message for faster safer emergency response</h3>
+              <h3>Fast, simple, discreet. Get help when you need it.</h3>
               <div className="card-body">
-                <h5 className="card-title">Type in a phone number below and choose what data you send...</h5>
-                <form>
+                <h5 className="card-title">Type in a phone number below to contact...</h5>
+                <form className="formBox">
                   <div className="form-item">
                     <label className="form-label">Emergency Contact:</label>
-                    <input className="form-text" type="text" value={sosName} />
+                    <input
+                      className="form-text"
+                      type="text"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)} // Update phone number state
+                    />
                   </div>
                 </form>
                 <h5 className="card-title">Please tell us your name below so we can help identify you...</h5>
-                <form>
+                <form className="formBox">
                   <div className="form-item">
-                    <label className="form-label">Your Name:</label>
-                    <input className="form-text" type="text" value={sosName} />
+                    <label className="form-label">Your Reference Name:</label>
+                    <input
+                      className="form-text"
+                      type="text"
+                      value={sosName}
+                      onChange={(e) => setSOSName(e.target.value)} // Update SOS name state
+                    />
                   </div>
                 </form>
                 <div className="buttonCardList">
@@ -41,7 +54,7 @@ function App() {
                     </div>
                   </div>
                   <div className="buttonCard">
-                    <a href="#" className="btn btn-primary">Send Audio Message</a>
+                    <AudioRecorder /> {/* Pass the phone number to AudioRecorder */}
                     <div className="buttonTextBox">
                       Record and send an audio message by text to your chosen phone contact so they will have record of your situation.
                     </div>
@@ -53,14 +66,13 @@ function App() {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
